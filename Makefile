@@ -6,4 +6,19 @@ run:
 
 .PHONY: test
 test:
-	docker run defn/recur-template-fastapi pytest test
+	. venv/bin/activate && pytest test
+
+.PHONY: venv
+venv:
+	python -mvenv venv
+	. venv/bin/activate && python -m pip install --upgrade pip
+
+venv/bin/activate:
+	$(MAKE) venv
+
+install: venv/bin/activate
+	. venv/bin/activate && pip install -r requirements.txt
+	. venv/bin/activate && pip install -r requirements.txt.dev
+
+clean:
+	rm -rf venv

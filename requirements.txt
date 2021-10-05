@@ -1,6 +1,3 @@
 fastapi
 mangum
-pytest
-requests
 uvicorn
-pydantic
